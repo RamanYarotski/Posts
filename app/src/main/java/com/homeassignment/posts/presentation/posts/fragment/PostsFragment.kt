@@ -43,7 +43,7 @@ class PostsFragment : Fragment() {
             recyclerView.adapter = adapter
         }
 
-        subscribeToUserEvents(adapter = adapter)
+        subscribeToUserEvents()
         subscribeToUIState(adapter = adapter)
         subscribeToAppEvents()
 
@@ -51,16 +51,15 @@ class PostsFragment : Fragment() {
     }
 
     /** Manages all user events, like clicks, input etc */
-    private fun subscribeToUserEvents(adapter: PostAdapter) {
+    private fun subscribeToUserEvents() {
         binding.searchField.addTextChangedListener { input ->
-            adapter.filter.filter(input)
             sharedViewModel.updateQuery(input.toString())
         }
     }
 
     private fun subscribeToUIState(adapter: PostAdapter) {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 sharedViewModel.postsUiState.collect { state ->
                     with(binding) {
                         when (state) {
@@ -110,16 +109,18 @@ class PostsFragment : Fragment() {
 
     private fun subscribeToAppEvents() {
         viewLifecycleOwner.lifecycleScope.launch {
-            sharedViewModel.postsEvents.collect { event ->
-                when (event) {
-                    is PostsEvents.ShowToast -> {
-                        Toast
-                            .makeText(
-                                requireContext(),
-                                event.message.mapToString(requireContext()),
-                                event.duration
-                            )
-                            .show()
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                sharedViewModel.postsEvents.collect { event ->
+                    when (event) {
+                        is PostsEvents.ShowToast -> {
+                            Toast
+                                .makeText(
+                                    requireContext(),
+                                    event.message.mapToString(requireContext()),
+                                    event.duration
+                                )
+                                .show()
+                        }
                     }
                 }
             }
