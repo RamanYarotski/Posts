@@ -1,6 +1,7 @@
 package com.homeassignment.posts.presentation.posts.fragment
 
 import android.os.Bundle
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,7 @@ class PostsFragment : Fragment() {
 
     private var _binding: FragmentPostsBinding? = null
     private val binding get() = _binding!!
+    private var textWatcher: TextWatcher? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +54,7 @@ class PostsFragment : Fragment() {
 
     /** Manages all user events, like clicks, input etc */
     private fun subscribeToUserEvents() {
-        binding.searchField.addTextChangedListener { input ->
+        textWatcher = binding.searchField.addTextChangedListener { input ->
             sharedViewModel.updateQuery(input.toString())
         }
     }
@@ -129,6 +131,7 @@ class PostsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.searchField.removeTextChangedListener(textWatcher)
         _binding = null
     }
 }
