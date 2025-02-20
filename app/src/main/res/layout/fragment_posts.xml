@@ -4,37 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="@dimen/default_padding_large"
     tools:context=".presentation.posts.fragment.PostsFragment">
 
     <EditText
-        android:id="@+id/searchField"
-        android:layout_width="0dp"
+        android:id="@+id/etSearchTitle"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:hint="@string/search_by_title"
         android:autofillHints="post title"
-        android:padding="16dp"
+        android:padding="@dimen/default_padding_large"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/rvTitles"
+        android:layout_width="@dimen/zero"
+        android:layout_height="@dimen/zero"
+        android:layout_marginTop="@dimen/default_margin_medium"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchField" />
+        app:layout_constraintTop_toBottomOf="@id/etSearchTitle" />
 
     <TextView
-        android:id="@+id/welcomeText"
-        android:layout_width="0dp"
+        android:id="@+id/tvWelcome"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="@dimen/default_padding_large"
         android:textSize="18sp"
         android:text="@string/hello_user"
         android:textAlignment="center"
@@ -45,11 +45,11 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
-        android:id="@+id/errorStateText"
-        android:layout_width="0dp"
+        android:id="@+id/tvErrorState"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textSize="18sp"
+        android:padding="@dimen/default_padding_large"
+        style="@style/BodyLarge"
         android:text="@string/error_state"
         android:maxLines="2"
         android:textAlignment="center"
@@ -59,11 +59,11 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/pbLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchField" />
+        app:layout_constraintTop_toBottomOf="@id/etSearchTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

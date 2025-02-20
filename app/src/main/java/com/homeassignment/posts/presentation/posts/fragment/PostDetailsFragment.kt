@@ -33,8 +33,8 @@ class PostDetailsFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 sharedViewModel.postDetailsUiState.collect { state ->
                     state?.let {
-                        binding.postTitle.text = it.post.title
-                        binding.postBody.text = it.post.body
+                        binding.tvPostTitle.text = it.post.title
+                        binding.tvPostBody.text = it.post.body
                     }
                 }
             }

@@ -41,8 +41,8 @@ class PostsFragment : Fragment() {
             findNavController().navigate(R.id.action_post_fragment_to_post_details_fragment)
         }
         with(binding) {
-            recyclerView.layoutManager = LinearLayoutManager(context)
-            recyclerView.adapter = adapter
+            rvTitles.layoutManager = LinearLayoutManager(context)
+            rvTitles.adapter = adapter
         }
 
         subscribeToUserEvents()
@@ -54,7 +54,7 @@ class PostsFragment : Fragment() {
 
     /** Manages all user events, like clicks, input etc */
     private fun subscribeToUserEvents() {
-        textWatcher = binding.searchField.addTextChangedListener { input ->
+        textWatcher = binding.etSearchTitle.addTextChangedListener { input ->
             sharedViewModel.updateQuery(input.toString())
         }
     }
@@ -66,41 +66,41 @@ class PostsFragment : Fragment() {
                     with(binding) {
                         when (state) {
                             is PostsUiState.Success -> {
-                                searchField.visibility = View.VISIBLE
-                                recyclerView.visibility = View.VISIBLE
+                                etSearchTitle.visibility = View.VISIBLE
+                                rvTitles.visibility = View.VISIBLE
 
-                                welcomeText.visibility = View.GONE
-                                errorStateText.visibility = View.GONE
-                                progressBar.visibility = View.GONE
+                                tvWelcome.visibility = View.GONE
+                                tvErrorState.visibility = View.GONE
+                                pbLoading.visibility = View.GONE
                                 adapter.setData(state.posts)
                                 adapter.filter.filter(state.query)
                             }
 
                             is PostsUiState.Error -> {
-                                errorStateText.visibility = View.VISIBLE
+                                tvErrorState.visibility = View.VISIBLE
 
-                                searchField.visibility = View.GONE
-                                recyclerView.visibility = View.GONE
-                                welcomeText.visibility = View.GONE
-                                progressBar.visibility = View.GONE
+                                etSearchTitle.visibility = View.GONE
+                                rvTitles.visibility = View.GONE
+                                tvWelcome.visibility = View.GONE
+                                pbLoading.visibility = View.GONE
                             }
 
                             is PostsUiState.Loading -> {
-                                searchField.visibility = View.VISIBLE
-                                recyclerView.visibility = View.VISIBLE
-                                progressBar.visibility = View.VISIBLE
+                                etSearchTitle.visibility = View.VISIBLE
+                                rvTitles.visibility = View.VISIBLE
+                                pbLoading.visibility = View.VISIBLE
 
-                                welcomeText.visibility = View.GONE
-                                errorStateText.visibility = View.GONE
+                                tvWelcome.visibility = View.GONE
+                                tvErrorState.visibility = View.GONE
                             }
 
                             is PostsUiState.Init -> {
-                                welcomeText.visibility = View.VISIBLE
+                                tvWelcome.visibility = View.VISIBLE
 
-                                searchField.visibility = View.GONE
-                                recyclerView.visibility = View.GONE
-                                errorStateText.visibility = View.GONE
-                                progressBar.visibility = View.GONE
+                                etSearchTitle.visibility = View.GONE
+                                rvTitles.visibility = View.GONE
+                                tvErrorState.visibility = View.GONE
+                                pbLoading.visibility = View.GONE
                             }
                         }
                     }
@@ -131,7 +131,7 @@ class PostsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding.searchField.removeTextChangedListener(textWatcher)
+        binding.etSearchTitle.removeTextChangedListener(textWatcher)
         _binding = null
     }
 }
