@@ -15,6 +15,7 @@ coroutines = "1.10.1"
 ktor = "2.3.9"
 recyclerview = "1.4.0"
 lifecycleRuntimeKtx = "2.8.7"
+leakcanaryAndroidVersion = "2.14"
 
 
 [libraries]
@@ -45,6 +46,7 @@ ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serializatio
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+squareup-leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanaryAndroidVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
