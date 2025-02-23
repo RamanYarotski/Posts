@@ -19,6 +19,7 @@ import com.homeassignment.posts.databinding.FragmentPostsBinding
 import com.homeassignment.posts.presentation.posts.PostsEvents
 import com.homeassignment.posts.presentation.posts.PostsSharedViewModel
 import com.homeassignment.posts.presentation.posts.PostsUiState
+import com.homeassignment.posts.presentation.uiutils.navigateSafe
 import com.homeassignment.posts.utils.mapToString
 import kotlinx.coroutines.launch
 
@@ -38,7 +39,7 @@ class PostsFragment : Fragment() {
 
         val adapter = PostAdapter { user ->
             sharedViewModel.selectPost(user)
-            findNavController().navigate(R.id.action_post_fragment_to_post_details_fragment)
+            findNavController().navigateSafe(R.id.action_post_fragment_to_post_details_fragment)
         }
         with(binding) {
             rvTitles.layoutManager = LinearLayoutManager(context)

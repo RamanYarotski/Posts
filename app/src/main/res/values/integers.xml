@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    // Lines
+    <integer name="two_lines">2</integer>
+
+    // Animations
+    <integer name="anim_duration">300</integer>
+</resources>
