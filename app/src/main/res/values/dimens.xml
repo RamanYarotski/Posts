@@ -4,10 +4,6 @@
     // Common
     <dimen name="zero">0dp</dimen>
 
-    // Lines
-    <dimen name="one_line">1</dimen>
-    <dimen name="two_lines">2</dimen>
-
     // Margins
     <dimen name="default_margin_large">16dp</dimen>
     <dimen name="default_margin_medium">8dp</dimen>
